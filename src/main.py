@@ -11,7 +11,7 @@ dt = 0.002
 steps = 4000
 
 # Soleil
-M_sun = 55.0         # "masse" du soleil
+M_sun = 10.0         # "masse" du soleil (unités arbitraires)
 sun_radius = 0.3
 
 # échelles pour transformer M_sun → profondeur / largeur du puits
