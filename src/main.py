@@ -4,7 +4,7 @@ from matplotlib import animation
 
 # --- paramètres ---
 G = 1.0          # constante gravitationnelle arbitraire
-M_sun = 5.0      # masse du Soleil
+M_sun = 2.0      # masse du Soleil
 mu = 0.05        # friction
 dt = 0.01
 steps = 4000
