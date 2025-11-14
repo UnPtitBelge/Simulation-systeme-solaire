@@ -5,8 +5,8 @@ from matplotlib import animation
 # --- paramètres ---
 G = 1.0          # constante gravitationnelle arbitraire
 M_sun = 2.0      # masse du Soleil
-mu = 0.05        # friction
-dt = 0.01        
+mu = 0.05        # coefficient de friction
+dt = 0.01        # delta t
 steps = 4000
 
 # Soleil et drap
