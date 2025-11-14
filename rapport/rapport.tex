@@ -123,7 +123,7 @@
 \emph{Auteurs:}\\
 Romain \textsc{Liefferinckx} - 000591790\\
 Manuel \textsc{Rocca} - 000596086\\
-Matteo \textsc{Morbée} - 000\\
+Matteo \textsc{Morbée} - 000549684\\
 Damian \textsc{Kazberuk} - 000589811\\
 Martin \textsc{Gouverneur} - 000586541\\
 
@@ -214,7 +214,7 @@ tridimensionnel pour coller avec notre thème: la simulation de la réalité.
 
 Nous allons donc repartir de la loi de la gravitation universelle et y ajouter la notion de vecteurs pour obtenir une version de cette loi nous permettant de simuler en 3D.
 \[
-\hat{\textbf{r}} = \frac{\textbf{r}}{\norm{\textbf{r}}} = \frac{(x, y)}{r} \\
+\hat{\mathbf{r}} = \frac{\mathbf{r}}{\norm{\mathbf{r}}} = \frac{(x, y)}{r}
 \]
 
 puisque:
@@ -268,5 +268,39 @@ Nous pouvons maintenant combiner les deux accélérations pour obtenir l'accél�
 \[
 a_{total} = a_{grav} + a_{friction} = -G \frac{M_{soleil}}{r^3} (x, y) - \mu v
 \]  
+
+Pour terminer, regardons comment nous utilisons cette accélération pour mettre à jour la position et la vitesse de notre bille à chaque itération.
+Nous savons grâce a Newton encore une fois, que:
+\[
+\frac{dx}{dt} = v
+\]  
+La dérivée de la position par rapport au temps est égale à la vitesse.
+De plus, nous savons que:
+\[
+\frac{dv}{dt} = a
+\]
+La dérivée de la vitesse par rapport au temps est égale à l'accélération.
+
+Malgré cela, dans notre simulation, nous utilisons des pas de temps discrets, nous allons donc approximer ces dérivées par des différences finies grâce à la méthode d'Euler explicite:
+\begin{align*}
+v_x(t+\Delta t) &= v_x(t) + a_x(t)\,\Delta t \\
+x(t+\Delta t) &= x(t) + v_x(t+\Delta t)\,\Delta t
+\end{align*}
+
+où:
+\begin{align*}
+\Delta t &= \text{le pas de temps} \\
+t &= \text{le temps à l'instant t} \\
+x(t) &= \text{la position à l'instant t} \\
+v_x(t) &= \text{la vitesse à l'instant t} \\
+a_x(t) &= \text{l'accélération à l'instant t}
+\end{align*}
+
+Ceci nous permet de mettre à jour la position et la vitesse de notre bille à chaque itération de la simulation.
+
+La dernière étape, consiste à regarder pour chaque itération avec notre x et y mis à jour, ou se trouve notre z grâce à la fonction de notre drap cité plus haut.
+\[
+z = f(x, y) = -depth \exp\left(-\frac{x^2 + y^2}{2\sigma^2}\right)
+\]
 
 \end{document}
