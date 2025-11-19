@@ -1,0 +1,371 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage[a4paper,left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{indentfirst}
+\usepackage{appendix}
+\usepackage{libertine}
+\usepackage{titlesec}
+\usepackage{eso-pic}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{color}
+\usepackage{setspace}
+\usepackage[T1]{fontenc}
+\usepackage[hyphens]{url}
+\usepackage[backend=bibtex,style=alphabetic]{biblatex}
+\addbibresource{source.bib}\usepackage[linkbordercolor=white]{hyperref}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{bm}
+\usepackage{enumitem}
+\usepackage{siunitx}
+\usepackage{textcomp}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{commath}
+\usepackage{cancel}
+\usepackage{pdflscape}
+\usepackage{svg}
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e} % Retain only one package
+\usepackage{comment}
+\usepackage{placeins}
+\usepackage{listings}
+\lstset{literate=%
+    {à}{{\`a}}1 {â}{{\^a}}1 {é}{{\'e}}1 {è}{{\`e}}1 {ê}{{\^e}}1 {ë}{{\"e}}1 {î}{{\^i}}1 {ï}{{\"i}}1 {ô}{{\^o}}1 {ö}{{\"o}}1 {ù}{{\`u}}1 {û}{{\^u}}1 {ü}{{\"u}}1 {ç}{{\c{c}}}1 {Ç}{{\c{C}}}1{―}{{\textemdash}}1
+    {’}{{'}}1 {‘}{{`}}1 {“}{{``}}1 {”}{{''}}1
+}
+\urlstyle{same}
+\pagestyle{fancy}
+\fancyhead[L]{\leftmark}
+\fancyhead[R]{}
+\renewcommand{\subsectionmark}[1]{}
+
+
+\usepackage{titlesec}
+\usepackage{hyperref}
+
+\titleclass{\subsubsubsection}{straight}[\subsection]
+
+
+\newcounter{subsubsubsection}[subsubsection]
+\renewcommand\thesubsubsubsection{\thesubsubsection.\arabic{subsubsubsection}}
+\renewcommand\theparagraph{\thesubsubsubsection.\arabic{paragraph}} % optional; useful if paragraphs are to be numbered
+
+
+\titleformat{\subsubsubsection}
+  {\normalfont\normalsize\bfseries}{\thesubsubsubsection}{1em}{}
+\titlespacing*{\subsubsubsection}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+\makeatletter
+\renewcommand\paragraph{\@startsection{paragraph}{5}{\z@}%
+  {3.25ex \@plus1ex \@minus.2ex}%
+  {-1em}%
+  {\normalfont\normalsize\bfseries}}
+\renewcommand\subparagraph{\@startsection{subparagraph}{6}{\parindent}%
+  {3.25ex \@plus1ex \@minus .2ex}%
+  {-1em}%
+  {\normalfont\normalsize\bfseries}}
+\def\toclevel@subsubsubsection{4}
+\def\toclevel@paragraph{5}
+\def\toclevel@paragraph{6}
+\def\l@subsubsubsection{\@dottedtocline{4}{7em}{4em}}
+\def\l@paragraph{\@dottedtocline{5}{10em}{5em}}
+\def\l@subparagraph{\@dottedtocline{6}{14em}{6em}}
+\makeatother
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+
+\setlength{\headheight}{14.5pt}
+\setlength{\parskip}{1em}
+\renewcommand{\baselinestretch}{0.6}
+\renewcommand{\headrulewidth}{1pt}
+\newcommand{\HRule}{\rule{\linewidth}{0.3mm}}
+\newcommand\BackgroundPic{%
+        \put(0,0){%
+                \parbox[b][\paperheight]{\paperwidth}{%
+                        \vfill
+                        \centering
+                        \includegraphics[width=\paperwidth,height=\paperheight,%
+                        keepaspectratio]{background.png}%
+                        \vfill}}}
+
+% -----------------------------------------------------
+
+\begin{document}
+\AddToShipoutPicture*{\BackgroundPic}
+\begin{titlepage}
+  \begin{sffamily}
+  \begin{flushleft} \large
+    \includegraphics[height=2.0cm]{logo_ulb.jpg}
+    \vspace{5cm}
+   \end{flushleft}
+  \begin{center}
+
+    %Title
+        \textsc{\huge INFO-F308 - Projet d'année}\\[1cm]
+
+    \HRule \\[0.7cm]
+
+        \textsc {\Huge Simulation de la réalité}\\[0.4cm]
+
+    \HRule \\[1.2cm]
+
+% Author and supervisor
+\begin{minipage}{0.5\textwidth}
+\begin{flushleft} \large
+\emph{Auteurs:}\\
+Romain \textsc{Liefferinckx} - 000591790\\
+Manuel \textsc{Rocca} - 000596086\\
+Matteo \textsc{Morbée} - 000549684\\
+Damian \textsc{Kazberuk} - 000589811\\
+Martin \textsc{Gouverneur} - 000586541\\
+
+
+\end{flushleft}
+\end{minipage}
+
+
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\emph{Professeurs:} \\
+Gilles  \textsc{Geraerts}\\
+\emph{Promoteur:} \\
+Pascal \textsc{Tribel}
+\end{flushright}
+\end{minipage}
+
+
+    \vfill
+
+    %Bottom of the page
+    {\large Année académique 2025-2026}
+  \end{center}
+
+  \end{sffamily}
+\end{titlepage}
+
+
+\clearpage
+
+
+\tableofcontents
+\newpage
+
+% -----------------------------------------------------
+\section{Introduction}
+Le Printemps des Sciences est un événement scientifique annuel coordonné par le Département 
+Inforsciences de l'ULB en région bruxelloise. Cet événement a "pour objectif de rassembler 
+l'ensemble des outils de diffusion et de promotion des sciences de la Faculté des Sciences et 
+de permettre ainsi à tout un chacun de goûter aux sciences, d'en découvrir les multiples 
+facettes, de l'approche expérimentale à la compréhension des enjeux sociaux et démocratiques 
+qui en relèvent, en passant par le simple plaisir de la découverte".\footnote{Source: https://sciences.brussels/printemps/equipe/}
+
+Dans le cadre du cours INFO-F308 intitulé Projets d'informatique 3 transdisciplinaire, les étudiants
+de troisième année de bachlier en sciences-informatiques ont été amenés
+à former des groupes de 5 étudiants. Une fois cette étape terminée chaque groupe fut présenté avec un choix de sujet
+à présenter au Printemps des Sciences. Nous avons, pour notre part, choisi le sujet 
+"Simultaion de la réalité". 
+
+Nous devons créer un modèle expérimental représentant un système physique
+et recréer ce système au mieux pour pouvoir ensuite, à l'aide de simulations, comparer notre modèle
+à la théorie. Le nombre d'expériences à représenter est très grand. Après avoir pesé les
+pour et les contres de certaines suggestions comme la simulation d'un trou noir, le refroidissement d'une
+tasse ou encore des éclairs, nous avons finalement décidé de simuler l'interaction
+entre les corps dans l'espace.
+
+La première partie de ce projet est donc la création d'un modèle expérimental. (détails à ajouter)
+
+Concernant la simulation, plusieurs choix s'offrent à nous: 
+\begin{itemize}
+  \item équations physiques classiques (Newton) en 2D
+  \item équations 3D
+  \item simulation stochastique (Bayes)
+  \item réseaux de neurones
+\end{itemize}
+
+Certaines options sont plus complexes que d'autres. Comme notre but est de faire découvrir une science
+accessible à tout le monde nous avons décidé d'adopter une approche de complexité croissante; commencer
+par la simulation la plus simple (à savoir les équations de gravitations classiques) et potentiellement,
+si le temps et nos compétences le permettent, s'essayer à d'autres options (comme le machine learning et
+les réseaux neuronaux).
+
+\section{Equations utilisées}
+Dans cette section, nous détaillons les équations qui nous ont permises de modéliser les différents phénomènes 
+physiques dans notre simulateur.
+
+Nous allons commencer par les équations de la physique newtonienne que nous avons utilisées dans notre simulateur.
+
+En deux dimensions, on utilise la deuxième loi de Newton pour modéliser le mouvement des objets comme ceci:
+\[
+F = ma
+\]
+où:
+\begin{align*}
+F &= \text{la force} \\
+m &= \text{la masse de l'objet} \\
+a &= \text{l'accélération de l'objet}
+\end{align*}
+
+
+\[
+F_{grav} = -G \frac{M m}{r^2}
+\]
+où:
+\begin{align*}
+F_{grav} &= \text{la force gravitationnelle} \\
+G &= \text{la constante gravitationnelle} \\
+M &= \text{la masse de la source de gravité} \\
+m &= \text{la masse de l'objet attiré par la source} \\
+r &= \text{la distance entre les deux masses}
+\end{align*}
+
+Ces deux équations sont à la base de la physique newtonienne en deux dimensions, or comme nous le savons, 
+notre univers est en trois dimensions. Nous devons donc adapter ces équations pour qu'elles fonctionnent dans un espace 
+tridimensionnel pour coller avec notre thème: la simulation de la réalité. 
+
+Nous allons donc repartir de la loi de la gravitation universelle et y ajouter la notion de vecteurs pour obtenir une version de cette loi nous permettant de simuler en 3D.
+\[
+\hat{\mathbf{r}} = \frac{\mathbf{r}}{\norm{\mathbf{r}}} = \frac{(x, y)}{r}
+\]
+
+puisque:
+
+\[
+r = \sqrt{x^2 + y^2}
+\]
+\[
+\textbf{r} = (x, y)
+\]
+
+A noter que r part de la source (0, 0) donc le soleil vers l'objet (x, y), la bille.\\
+\\
+Ceci nous permet d'obtenir les composantes de la force gravitationnelle dans chaque direction et ainsi d'obtenir la version vectorielle de la loi de la gravitation universelle:
+\[
+{F}_{grav} = -G \frac{M_{soleil} m_{bille}}{r^2} \hat{\textbf{r}} = -G \frac{M_{soleil} m_{bille}}{r^2} \frac{(x, y)}{r} = -G \frac{M_{soleil} m_{bille}}{r^3} (x, y)
+\]
+Attention, le signe négatif indique que la force est attractive, donc dirigée vers le soleil. Puisque comme dit plus haut, r part du soleil vers la bille,
+nous devons inverser le sens de la force pour qu'elle pointe bien vers le soleil.
+
+Maintenant que nous avons notre formule de la force gravitationnelle vectorielle, nous pouvons l'intégrer dans la deuxième loi de Newton pour obtenir 
+l'accélération de notre bille dans chaque direction:
+
+\[
+F_{grav} = ma = -G \frac{M_{soleil} m_{bille}}{r^3} (x, y)
+\]
+
+donc:
+
+\[
+a = -G \frac{M_{soleil}}{r^3} (x, y)
+\]
+
+A partir de ce moment la, nous pourrions nous dire que nous avons tout ce qu'il nous faut pour simuler le mouvement de notre bille dans le champ gravitationnel du soleil, 
+cependant, il ne faut pas oublier les frottements comme dit plus haut, car nous voulons simuler la réalité.
+
+Formule générale de la friction:
+\[
+F_{friction} = -\mu m v
+\]
+où:
+\begin{align*}
+F_{friction} &= \text{la force de friction} \\
+\mu &= \text{le coefficient de friction} \\
+m &= \text{la masse de l'objet} \\
+v &= \text{la vitesse de l'objet}
+\end{align*}
+
+Par conséquent, l'accélération due à la friction:
+\[
+a_{friction} = -\mu v
+\]
+
+Nous pouvons maintenant combiner les deux accélérations pour obtenir l'accélération totale de notre bille pour chaque composantes:
+\[
+a_{total} = a_{grav} + a_{friction} = -G \frac{M_{soleil}}{r^3} (x, y) - \mu v
+\]  
+
+Pour terminer, regardons comment nous utilisons cette accélération pour mettre à jour la position et la vitesse de notre bille à chaque itération.
+Nous savons grâce a Newton encore une fois, que:
+\[
+\frac{dx}{dt} = v
+\]  
+La dérivée de la position par rapport au temps est égale à la vitesse.
+De plus, nous savons que:
+\[
+\frac{dv}{dt} = a
+\]
+La dérivée de la vitesse par rapport au temps est égale à l'accélération.
+
+Malgré cela, dans notre simulation, nous utilisons des pas de temps discrets, nous allons donc approximer ces dérivées par des différences finies grâce à la méthode d'Euler explicite:
+\begin{align*}
+v_x(t+\Delta t) &= v_x(t) + a_x(t)\,\Delta t \\
+x(t+\Delta t) &= x(t) + v_x(t+\Delta t)\,\Delta t
+\end{align*}
+
+où:
+\begin{align*}
+\Delta t &= \text{le pas de temps} \\
+t &= \text{le temps à l'instant t} \\
+x(t) &= \text{la position à l'instant t} \\
+v_x(t) &= \text{la vitesse à l'instant t} \\
+a_x(t) &= \text{l'accélération à l'instant t}
+\end{align*}
+
+Ceci nous permet de mettre à jour la position et la vitesse de notre bille à chaque itération de la simulation.
+
+Maintenant que nous avons vu les équations de la physique newtonienne, nous allons nous pencher sur comment nous allons modéliser le drap avec un puit de gravité au centre.
+Pour modéliser le drap, nous avons choisi d'utiliser une fonction gaussienne bidimensionnelle centrée en (0, 0) (le centre du drap) qui va représenter la déformation du drap due à la présence du soleil, ou en tout cas une masse.
+
+La fonction représentant notre drap:
+\[
+f(x, y) = A \exp\left(-\frac{(x - x_0)^2 + (y - y_0)^2}{2\sigma^2}\right)
+\]
+
+\begin{itemize}
+    \item $A$ : amplitude = $-depth$ (négative puisqu'on veut un puit)
+    \item $(x_0, y_0)$ : centre de la gaussienne = $(0, 0)$
+    \item $\sigma$ : écart-type = ``largeur'' de la cloche
+\end{itemize}
+
+après simplification, nous arrivons à la fonction qui modélise notre puit:
+\[
+f(x, y) = -depth \exp\left(-\frac{x^2 + y^2}{2\sigma^2}\right)
+\]
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.4\textwidth]{drap.png}
+  \caption{Représentation graphique de notre fonction de drap avec puit de gravité au centre.}
+  \label{fig:figure1}
+\end{figure}
+
+La dernière étape, consiste à regarder pour chaque itération avec notre x et y mis à jour, ou se trouve notre z grâce à la fonction de notre drap.
+\[
+z = f(x, y) = -depth \exp\left(-\frac{x^2 + y^2}{2\sigma^2}\right)
+\]
+
+Nous avons ainsi notre position en 3D (x, y, z) pour chaque itération de notre simulation.
+
+\section{Conclusion}
+Au terme de ce projet, nous avons appris de nombreuses choses intéressantes. Bien que ce projet n'ait été pas été aussi
+complexe que ses prédécesseurs (PDA1 et PDA2) il fut bien plus intéressant car nous avons touché à un aspect
+très intéressant de l'informatique: la diversité. 
+
+Pour réaliser ce projet, nous nous sommes penchés sur des concepts théoriques physiques, sur de la pédagogie, sur de la
+vulgarisation et des aspects techniques (création du modèle expérimental). Tout ceci en restant dans un cadre scientifique 
+correct en témoigne ce rapport. Bien entendu, nous avons pu construire sur nos compétences de base de travail de groupe déjà
+initiées l'année passée pour le merveilleux \emph{Tetris Royale}\footnote{https://github.com/romainlief/Tetris-Royal}.
+
+En somme, ce projet sensationnel conclut avec panache notre troisième et dernière année de bachelier en sciences-informatiques
+au sein de l'ULB. Nous souhaitons également remercier Tribel Pascal, notre assistant assigné pour ce projet qui, tout au long
+de ce projet, répondait présent (sauf sur teams si on ne le tague pas :) ) et nous a aidé et conseillé de manière particulièrement
+pertinente.
+
+\end{document}

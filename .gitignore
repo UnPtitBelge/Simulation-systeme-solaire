@@ -208,3 +208,21 @@ __marimo__/
 
 # outputs images + videos
 ./src/tracking/outputs/
+
+# LaTeX auxiliary files
+*.aux
+*.bbl
+*.blg
+*.brf
+*.idx
+*.ind
+*.lof
+*.lot
+*.out
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.nav
+*.bib
+*.run.xml
+*.toc
