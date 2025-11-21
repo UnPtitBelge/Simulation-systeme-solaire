@@ -226,7 +226,3 @@ __marimo__/
 *.bib
 *.run.xml
 *.toc
-=======
-# outputs images + videos
-./src/tracking/outputs/
->>>>>>> 96fcc67 (joining with what was already in)
