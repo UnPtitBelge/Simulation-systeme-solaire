@@ -3,6 +3,7 @@ import numpy as np
 from neural_network import Neural_network
 import matplotlib.pyplot as plt
 
+
 def generate_trajectory(x0, y0, vx0, vy0, n_steps, ax=0.0, ay=-0.1):
     """
     Génère une trajectoire simple avec accélération constante.
@@ -52,7 +53,7 @@ if __name__ == "__main__":
         if epoch % 100 == 0:
             print(f"Epoch {epoch}, Loss = {epoch_loss / len(X):.6f}")
 
-    x, y = trajectories[0][0]  
+    x, y = trajectories[0][0]
     trajectory_pred = [(x, y)]
     for _ in range(len(trajectories[0])):
         dx, dy = nn.forward(np.array([x, y]))
@@ -67,10 +68,16 @@ if __name__ == "__main__":
     # Quelques trajectoires réelles pour lisibilité
     for traj in trajectories[:30]:
         X_real, Y_real = zip(*traj)
-        plt.plot(X_real, Y_real, 'o-', alpha=0.3, label='Réalité' if traj == trajectories[0] else "")
+        plt.plot(
+            X_real,
+            Y_real,
+            "o-",
+            alpha=0.3,
+            label="Réalité" if traj == trajectories[0] else "",
+        )
     # Trajectoire prédite
     X_pred, Y_pred = zip(*trajectory_pred)
-    plt.plot(X_pred, Y_pred, 'x--', color='red', label='Prédiction NN')
+    plt.plot(X_pred, Y_pred, "x--", color="red", label="Prédiction NN")
     plt.xlabel("x")
     plt.ylabel("y")
     plt.legend()
