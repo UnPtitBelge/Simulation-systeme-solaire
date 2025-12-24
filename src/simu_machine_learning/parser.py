@@ -1,37 +1,30 @@
 import numpy as np
 
+
 class DataParser:
-    def parse_data(self, experience: list[tuple]) -> tuple[list, list]:
+    """
+    Parses experimental data
+    """
+
+    @staticmethod
+    def parse_experiences(
+        experiences: list[list[tuple]],
+    ) -> tuple[np.ndarray, np.ndarray]:
         """
-        Parse the experience data into input-output pairs for machine learning.
+        Parses a list of experiences into input and output arrays for training.
 
         Args:
-            experience (list): A list of tuples representing the experience data, where each tuple contains input and output values.
+            experiences (list[list[tuple]]): List of experiences, each a list of (t, x, y) tuples.
 
         Returns:
-            tuple: A tuple containing two lists, X and Y. X is a list of input pairs, and Y is a list of output differences.
+            tuple[np.ndarray, np.ndarray]: Arrays for inputs (times) and outputs (positions).
         """
-        X, Y = [], []
-        for i in range(len(experience) - 1):
-            x_t, y_t = experience[i]
-            x_tp1, y_tp1 = experience[i + 1]
+        X = []
+        Y = []
 
-            X.append([x_t, y_t])
-            Y.append([x_tp1 - x_t, y_tp1 - y_t])
-        return X, Y
-    
-    @staticmethod
-    def prepare_dataset(trajectories):
-        """
-        Transforme une liste de trajectoires en X et Y pour le réseau.
-        Chaque trajectoire : liste de tuples (x, y)
-        X : positions
-        Y : Δx, Δy
-        """
-        X_all, Y_all = [], []
-        parser = DataParser()
-        for traj in trajectories:
-            X, Y = parser.parse_data(traj)
-            X_all.extend(X)
-            Y_all.extend(Y)
-        return np.array(X_all), np.array(Y_all)
+        for exp in experiences:
+            for t, x, y in exp:
+                X.append([t])  # entrée NN
+                Y.append([x, y])  # sortie NN
+
+        return np.array(X, dtype=np.float32), np.array(Y, dtype=np.float32)
