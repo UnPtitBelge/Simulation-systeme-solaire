@@ -3,7 +3,7 @@ from tkinter import ttk
 from PIL import Image, ImageTk
 import cv2
 
-from LiveTracking import LiveTracking
+from model.LiveTracking import LiveTracking
 
 class Window():
     liveTracking = None

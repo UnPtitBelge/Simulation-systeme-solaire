@@ -15,9 +15,9 @@ class TrackBall:
     def __init__(self, ballColor: list = [255, 255, 255], output_video: str = "trajectory.mp4" ):
         self.ballColor = np.uint8([[ballColor]])
         self.lower, self.upper = self._set_hue_range(cv2.cvtColor(self.ballColor, cv2.COLOR_BGR2HSV)[0][0])
+        self.frames = []
         self.ballPositions = []
         self.tracker = []
-        self.frames = []
         self.path = os.getcwd() + "/" + DEFAULT_TRACKING_DIR
         create_necessary_dirs(self.path, OUTPUT_IMAGES_DIR)
         create_necessary_dirs(self.path, OUTPUT_VIDEO_DIR)
@@ -64,12 +64,12 @@ class TrackBall:
         """
         positions = []
         canvas = np.zeros_like(self.frames[0])
-        for frame in self.frames:
+        for idx, frame in enumerate(self.frames):
             center = self.findBallFrame(frame)
             if center is not None:
                 positions.append(center)
+                self.ballPositions.append((idx, center))
 
-        self.ballPositions = positions
         positions = self._interpolate_positions(positions, smoothing=5)
         self.tracker = positions
         self._create_video(canvas, positions, fps=60)
@@ -159,6 +159,10 @@ class TrackBall:
         x_new, y_new = interp.splev(unew, tck)
 
         return list(zip(np.array(x_new, dtype=int), np.array(y_new, dtype=int)))
+
+    @property
+    def getFrames(self):
+        return self.frames
 
     @property
     def getPositionsInterpolated(self):

@@ -1,4 +1,4 @@
-from TrackBall import TrackBall
+from model.TrackBall import TrackBall
 import cv2
 
 class LiveTracking:

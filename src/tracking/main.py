@@ -1,21 +1,32 @@
 import os
 import argparse
 
-from TrackBall import TrackBall
-from DataWriter import DataWriter
+from model.TrackBall import TrackBall
+from stats.DataWriter import DataWriter
+from stats.PositionsAnalytics import PositionsAnalytics
 from path import *
 from gui import Window
 
 def main(filePath: str = "", saveImages: bool = False, saveData: bool = False) -> None:
     RESOURCE_PATH = os.path.join(os.getcwd(), RESOURCES_DIR)
-    experiment = TrackBall(ballColor=[15, 4, 127])
+    experiment = TrackBall(ballColor=[127, 4, 15])
     experiment.convertVideoToImages(RESOURCE_PATH + filePath, saveImages=saveImages)
     experiment.trackBall()
 
     if not saveData:
         return
+    pa = PositionsAnalytics(
+        experiment.ballPositions,
+        width=experiment.frames[0].shape[1],
+        height=experiment.frames[0].shape[0],
+        fps=30, # hypothesis, 30 frames per second uniformly.
+        realWidth=90,
+        realHeight=90
+    )
+    pa.calculateSpeed()
+
     dw = DataWriter("tracking_data.csv")
-    dw.appendData(experiment.ballPositions)
+    dw.appendData(pa.getBallPositionsWithSpeed)
 
 
 def getArguments() -> dict:
@@ -48,8 +59,8 @@ def getArguments() -> dict:
 
 
 if __name__ == "__main__":
-    app = Window.Window()
-    app.mainloop()
+    # app = Window.Window()
+    # app.mainloop()
 
-    # args = list(getArguments().values())
-    # main(*args)
+    args = list(getArguments().values())
+    main(*args)
